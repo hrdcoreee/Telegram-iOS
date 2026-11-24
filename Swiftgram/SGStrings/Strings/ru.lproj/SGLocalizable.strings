@@ -128,6 +128,7 @@
 "Settings.PullToNextTopic" = "Свайп между топиками";
 "Settings.GalleryCamera" = "Камера в галерее";
 "Settings.GalleryCameraPreview" = "Превью камеры в галерее";
+"Settings.DisableGlassEffects" = "Отключить стекло и эффекты размытия";
 /* "Send Message As..." button */
 "Settings.SendAsButton" = "Кнопка \"%@\"";
 "Settings.SnapDeletionEffect" = "Эффекты удаления сообщений";

@@ -179,7 +179,7 @@ struct BlurView: UIViewRepresentable {
     }
 }
 
-// Simple glass background (now supports round + adaptive brightness)
+// Lightweight high-performance button background for input toolbar
 struct Glass: View {
     var cornerRadius: CGFloat?
     @Environment(\.colorScheme) private var colorScheme
@@ -187,28 +187,13 @@ struct Glass: View {
     var body: some View {
         let isDark = colorScheme == .dark
 
-        Group {
-            if !isDark {
-                BlurView(style: .extraLight)
-                    .clipShape(Circle())
-            } else {
+        Circle()
+            .fill(isDark ? Color.white.opacity(0.12) : Color.black.opacity(0.06))
+            .overlay(
                 Circle()
-                    .fill(.ultraThinMaterial)
-                    .overlay(
-                        Circle()
-                            .fill(
-                                Color.white.opacity(0.02)
-                            )
-                    )
-            }
-        }
-        .overlay(
-            Circle()
-                .stroke(Color.white.opacity(0.25), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(isDark ? 0.12 : 0.04), radius: 6, x: 0, y: 3)
+                    .stroke(isDark ? Color.white.opacity(0.18) : Color.black.opacity(0.1), lineWidth: 0.5)
+            )
     }
-
 }
 
 // Button style

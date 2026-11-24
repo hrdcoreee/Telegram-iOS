@@ -16,6 +16,7 @@ swift_library(
     deps = [
         "//submodules/TelegramCore:TelegramCore",
         "//submodules/SSignalKit/SwiftSignalKit:SwiftSignalKit",
+        "//submodules/Utils/DeviceModel",
     ],
     visibility = [
         "//visibility:public",

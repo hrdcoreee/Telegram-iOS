@@ -198,7 +198,7 @@ private final class ChatMessageDateSectionSeparatorNode: ASDisplayNode {
             self.backgroundNode.layer.mask = self.patternLayer
         }
         
-        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? true
+        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? false
         
         self.backgroundNode.updateColor(color: selectDateFillStaticColor(theme: self.presentationData.theme.theme, wallpaper: self.presentationData.theme.wallpaper), enableBlur: fullTranslucency && dateFillNeedsBlur(theme: self.presentationData.theme.theme, wallpaper: self.presentationData.theme.wallpaper), transition: .immediate)
         
@@ -313,8 +313,8 @@ private final class ChatMessageDateContentNode: ASDisplayNode {
         
         let graphics = PresentationResourcesChat.principalGraphics(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper, bubbleCorners: presentationData.chatBubbleCorners)
 
-        let fullTranslucency: Bool = true
-        
+        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? false
+
         self.backgroundNode.updateColor(color: selectDateFillStaticColor(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), enableBlur: fullTranslucency && dateFillNeedsBlur(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), transition: .immediate)
         self.stickBackgroundNode.image = graphics.dateFloatingBackground
         self.stickBackgroundNode.alpha = 0.0
@@ -343,8 +343,8 @@ private final class ChatMessageDateContentNode: ASDisplayNode {
         self.presentationData = presentationData
         
         let graphics = PresentationResourcesChat.principalGraphics(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper, bubbleCorners: presentationData.chatBubbleCorners)
-        
-        let fullTranslucency: Bool = true
+
+        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? false
 
         self.backgroundNode.updateColor(color: selectDateFillStaticColor(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), enableBlur: fullTranslucency && dateFillNeedsBlur(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), transition: .immediate)
         self.stickBackgroundNode.image = graphics.dateFloatingBackground
@@ -558,8 +558,8 @@ private final class ChatMessagePeerContentNode: ASDisplayNode {
         
         let graphics = PresentationResourcesChat.principalGraphics(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper, bubbleCorners: presentationData.chatBubbleCorners)
 
-        let fullTranslucency: Bool = true
-        
+        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? false
+
         self.backgroundNode.updateColor(color: selectDateFillStaticColor(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), enableBlur: fullTranslucency && dateFillNeedsBlur(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), transition: .immediate)
         self.stickBackgroundNode.image = graphics.dateFloatingBackground
         self.stickBackgroundNode.alpha = 0.0
@@ -629,8 +629,8 @@ private final class ChatMessagePeerContentNode: ASDisplayNode {
         self.presentationData = presentationData
         
         let graphics = PresentationResourcesChat.principalGraphics(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper, bubbleCorners: presentationData.chatBubbleCorners)
-        
-        let fullTranslucency: Bool = true
+
+        let fullTranslucency: Bool = self.controllerInteraction?.enableFullTranslucency ?? false
 
         self.backgroundNode.updateColor(color: selectDateFillStaticColor(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), enableBlur: fullTranslucency && dateFillNeedsBlur(theme: presentationData.theme.theme, wallpaper: presentationData.theme.wallpaper), transition: .immediate)
         self.stickBackgroundNode.image = graphics.dateFloatingBackground

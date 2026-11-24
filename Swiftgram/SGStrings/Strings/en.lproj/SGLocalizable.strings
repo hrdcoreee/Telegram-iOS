@@ -135,6 +135,7 @@
 "Settings.PullToNextTopic" = "Pull to Next Topic";
 "Settings.GalleryCamera" = "Camera in Gallery";
 "Settings.GalleryCameraPreview" = "Camera Preview in Gallery";
+"Settings.DisableGlassEffects" = "Disable Glass & Blur Effects";
 /* "Send Message As..." button */
 "Settings.SendAsButton" = "\"%@\" Button";
 "Settings.SnapDeletionEffect" = "Message Deletion Effects";

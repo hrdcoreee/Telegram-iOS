@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import SwiftSignalKit
 import TelegramCore
+import DeviceModel
 
 public enum MediaAutoDownloadNetworkType {
     case wifi
@@ -277,17 +278,36 @@ public struct EnergyUsageSettings: Codable, Equatable {
         var length: Int = 4
         var cpuCount: UInt32 = 0
         sysctlbyname("hw.ncpu", &cpuCount, &length, nil, 0)
-        
-        let isCapable = cpuCount >= 4
-        
+
+        var memSize: UInt64 = 0
+        var memLength = MemoryLayout<UInt64>.size
+        sysctlbyname("hw.memsize", &memSize, &memLength, nil, 0)
+        let ramInGB = Double(memSize) / (1024.0 * 1024.0 * 1024.0)
+
+        let isOlderPhone: Bool
+        switch DeviceModel.current {
+        case .iPhone, .iPhone3G, .iPhone3GS, .iPhone4, .iPhone4S, .iPhone5, .iPhone5C, .iPhone5S,
+             .iPhone6, .iPhone6Plus, .iPhone6S, .iPhone6SPlus, .iPhoneSE,
+             .iPhone7, .iPhone7Plus, .iPhone8, .iPhone8Plus, .iPhoneX,
+             .iPhoneXS, .iPhoneXSMax, .iPhoneXR,
+             .iPhone11, .iPhone11Pro, .iPhone11ProMax, .iPhoneSE2ndGen:
+            isOlderPhone = true
+        case .iPodTouch1, .iPodTouch2, .iPodTouch3, .iPodTouch4, .iPodTouch5, .iPodTouch6, .iPodTouch7:
+            isOlderPhone = true
+        default:
+            isOlderPhone = false
+        }
+
+        let isCapable = cpuCount >= 6 && ramInGB >= 3.5 && !isOlderPhone
+
         return EnergyUsageSettings(
-            activationThreshold: 15,
-            autoplayVideo: true,
-            autoplayGif: true,
-            loopStickers: true,
+            activationThreshold: isCapable ? 15 : 100,
+            autoplayVideo: isCapable,
+            autoplayGif: isCapable,
+            loopStickers: isCapable,
             loopEmoji: isCapable,
             fullTranslucency: isCapable,
-            extendBackgroundWork: true,
+            extendBackgroundWork: isCapable,
             autodownloadInBackground: true
         )
     }()
